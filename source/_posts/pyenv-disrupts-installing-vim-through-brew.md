@@ -7,7 +7,6 @@ tags:
   - pyenv
 category:
   - Development Environment
-  - hoge
 ---
 
 I tried `$ brew reinstall vim` but errors occured.
