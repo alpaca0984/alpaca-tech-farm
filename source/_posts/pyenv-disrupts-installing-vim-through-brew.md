@@ -37,6 +37,7 @@ make: *** [first] Error 2
 ```
 
 I read error messages and finally detected that python’s path is not located where Homebrew expects.
+Pyenv's path-settings was in ~/.bash_profile, so temporary commented out them.
 
 `$ vim ~/.bash_profile`
 ```diff
