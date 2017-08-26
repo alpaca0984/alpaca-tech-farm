@@ -2,6 +2,12 @@
 title: Pyenv disrupts installing vim through brew
 date: 2017-08-26 20:58:05
 tags:
+  - Homebrew
+  - Vim
+  - pyenv
+category:
+  - Development Environment
+  - hoge
 ---
 
 I tried `$ brew reinstall vim` but errors occured.
