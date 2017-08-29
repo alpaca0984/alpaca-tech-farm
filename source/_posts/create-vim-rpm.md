@@ -53,3 +53,11 @@ When we install rpmdevtools, .rpmmacros file is created in our home directory.
     case "${QA_CHECK_RPATHS:-}" in [1yY]*) /usr/lib/rpm/check-rpaths ;; esac \
     /usr/lib/rpm/check-buildroot
 ```
+
+When we set %\_topdir, RPM files are extracted under it.
+Now, I'm gonna create vim-7.4 rpm so name topdir vim74.
+`$ vim ~/.rpmmacros`
+```diff
+- %_topdir %(echo $HOME)/rpmbuild
++ %_topdir %(echo $HOME)/vim74
+```
