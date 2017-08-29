@@ -10,7 +10,7 @@ tags:
 I use vim as main editor, with many plugins.
 
 One of my favorites is [neocomplete](https://github.com/Shougo/neocomplete.vim).
-It requires vim with lua but when we install vim from yum, it doesn't have lua.
+It requires vim with lua but when we install vim from yum, it isn't.
 So I have to compile vim with lua when I set up new developing environment.
 
 It is little bother for me, so I created vim-rpm which is already build with lua.
@@ -20,7 +20,7 @@ This is in CentOS7.
 
 ### Install dependency
 
-We use `gcc` and so on.
+We use gcc and so on.
 ```shell
 $ sudo yum groups install "Development tools"
 ```
