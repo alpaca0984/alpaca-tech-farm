@@ -61,3 +61,111 @@ Now, I'm gonna create vim-7.4 rpm so name topdir vim74.
 - %_topdir %(echo $HOME)/rpmbuild
 + %_topdir %(echo $HOME)/vim74
 ```
+
+### Install vim7.4-src-rpm
+
+To create new vim7.4-rpm, we have to get .spec file.
+First, download source rpm.
+`$ yumdownloader --source vim`
+
+Now, we've got like a 'vim-7.4.160-1.el7_3.1.src.rpm.
+Then, install it.
+`$ rpm -ivh vim-7.4.160-1.el7_3.1.src.rpm`
+
+The ~/vim74 directory was automatically created and files are extracted.
+```
+[vagrant@localhost ~]$ tree -d vim74/
+vim74/
+├── SOURCES
+└── SPECS
+
+2 directories
+```
+
+### Modify vim.spec
+
+I want vim built with lua, so I configure vim with it.
+Here is changes of vim.spec.
+```diff
+@@ -12,6 +12,7 @@
+ %define withvimspell 0
+ %define withhunspell 0
+ %define withruby 1
++%define withlua 1
+
+ %define baseversion 7.4
+ %define vimdir vim74
+@@ -232,6 +233,9 @@
+ %if "%{withruby}" == "1"
+ Buildrequires: ruby-devel ruby
+ %endif
++%if "%{withlua}" == "1"
++Buildrequires: lua-devel
++%endif
+ %if %{desktop_file}
+ # for /usr/bin/desktop-file-install
+ Requires: desktop-file-utils
+@@ -556,6 +560,7 @@
+   --enable-gtk2-check --enable-gui=gtk2 \
+   --with-compiledby="<bugzilla@redhat.com>" --enable-cscope \
+   --with-modified-by="<bugzilla@redhat.com>" \
++  --enable-fail-if-missing \
+ %if "%{withnetbeans}" == "1"
+   --enable-netbeans \
+ %else
+@@ -571,6 +576,11 @@
+ %else
+   --disable-rubyinterp \
+ %endif
++%if "%{withlua}" == "1"
++  --enable-luainterp=dynamic \
++%else
++  --disable-luainterp \
++%endif
+
+ make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/%{vimdir} %{?_smp_mflags}
+ cp vim gvim
+@@ -585,6 +595,7 @@
+  --enable-cscope --with-modified-by="<bugzilla@redhat.com>" \
+  --with-tlib=ncurses \
+  --with-compiledby="<bugzilla@redhat.com>" \
++ --enable-fail-if-missing \
+ %if "%{withnetbeans}" == "1"
+   --enable-netbeans \
+ %else
+@@ -600,6 +611,11 @@
+ %else
+   --disable-rubyinterp \
+ %endif
++%if "%{withlua}" == "1"
++  --enable-luainterp=dynamic \
++%else
++  --disable-luainterp \
++%endif
+```
+
+### Build new vim-rpm
+
+Eventually, we build our own vim-rpm.
+If you haven't installed lua-devel, you have to do.
+`$ sudo yum install lua-devel`
+
+Build rpm.
+`$ rpmbuild -ba SPECS/vim.spec`
+If you specify distribution, you path it as option.
+e.g. `$ rpmbuild -ba --define '.dist <your-distribution>' SPECS/vim.spec`
+
+You get new vim rpms from vim74/RPM directory!
+```
+[vagrant@localhost vim74]$ tree ~/vim74/RPMS/
+/home/vagrant/vim74/RPMS/
+└── x86_64
+    ├── vim-common-7.4.160-1.el7.centos.1.x86_64.rpm
+    ├── vim-debuginfo-7.4.160-1.el7.centos.1.x86_64.rpm
+    ├── vim-enhanced-7.4.160-1.el7.centos.1.x86_64.rpm
+    ├── vim-filesystem-7.4.160-1.el7.centos.1.x86_64.rpm
+    ├── vim-minimal-7.4.160-1.el7.centos.1.x86_64.rpm
+    └── vim-X11-7.4.160-1.el7.centos.1.x86_64.rpm
+
+1 directory, 6 files
+```
