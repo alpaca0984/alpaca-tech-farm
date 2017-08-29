@@ -4,6 +4,7 @@ date: 2017-08-29 00:36:00
 tags:
   - RPM
   - CentOS7
+  - Vim
 ---
 
 I use vim as main editor, with many plugins.
