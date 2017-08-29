@@ -1,5 +1,5 @@
 ---
-title: create vim rpm
+title: Create vim rpm
 date: 2017-08-29 00:36:00
 tags:
   - RPM
