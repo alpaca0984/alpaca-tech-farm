@@ -16,9 +16,7 @@ So I have to compile vim with lua when I set up new developing environment.
 It is little bother for me, so I created vim-rpm which is already build with lua.
 This is in CentOS7.
 
-## Prepare for building rpm
-
-### Install dependency
+## Install dependency
 
 We use gcc and so on.
 ```shell
@@ -30,7 +28,7 @@ For downloading source rpm, and build rpm packages.
 $ sudo yum install yum-utils rpmdevtools
 ```
 
-### Configure .rpmmacros
+## Configure .rpmmacros
 
 When we install rpmdevtools, .rpmmacros file is created in our home directory.
 `$ cat ~/.rpmmacros`
@@ -63,7 +61,7 @@ Now, I'm gonna create vim-7.4 rpm so name topdir vim74.
 + %_topdir %(echo $HOME)/vim74
 ```
 
-### Install vim7.4-src-rpm
+## Install vim7.4-src-rpm
 
 To create new vim7.4-rpm, we have to get .spec file.
 First, download source rpm.
@@ -83,7 +81,7 @@ vim74/
 2 directories
 ```
 
-### Modify vim.spec
+## Modify vim.spec
 
 I want vim built with lua, so I configure vim with it.
 Here is changes of vim.spec.
@@ -145,7 +143,7 @@ Here is changes of vim.spec.
 +%endif
 ```
 
-### Build new vim-rpm
+## Build new vim-rpm
 
 Eventually, we build our own vim-rpm.
 If you haven't installed lua-devel, you have to do.
