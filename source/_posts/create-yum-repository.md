@@ -115,6 +115,12 @@ Complete!
 I uploaded to Github.
 https://github.com/alpaca0984/rpm-pkgs
 
+Chage .repo file.
+`$ vim /etc/yum.repos.d/alpaca-main.repo`
+```diff
+- baseurl=file:///home/vagrant/yumrepos
++ baseurl=https://raw.githubusercontent.com/alpaca0984/rpm-pkgs/master/x86_64
+```
 
 ## Create rpm for installing repository via yum
 
@@ -239,3 +245,69 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 ```
+
+### Add .repo file to SOURCE directory
+
+Put alpaca-main.repo in SOURCE dir.
+`$ cp /etc/yum.repos.d/alpaca-main.repo ~/alpaca-main/SOURCES/`
+
+## Build rpm package
+
+Build package.
+`$ rpmbuild -ba SPECS/alpaca-yum-repos.spec`
+
+I got the rpm package!
+```
+[vagrant@localhost alpaca-main]$ tree RPMS
+RPMS
+└── noarch
+    └── alpaca-yum-repos-1-1.el7.centos.noarch.rpm
+
+1 directory, 1 file
+```
+
+## Install repository via yum
+
+Finally, I got to install my alpaca-main repository.
+```
+[vagrant@localhost alpaca-main]$ sudo yum install RPMS/noarch/alpaca-yum-repos-1-1.el7.centos.noarch.rpm
+Loaded plugins: fastestmirror
+Examining RPMS/noarch/alpaca-yum-repos-1-1.el7.centos.noarch.rpm: alpaca-yum-repos-1-1.el7.centos.noarch
+Marking RPMS/noarch/alpaca-yum-repos-1-1.el7.centos.noarch.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package alpaca-yum-repos.noarch 0:1-1.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=========================================================================================================================================
+ Package                      Arch               Version                       Repository                                           Size
+=========================================================================================================================================
+Installing:
+ alpaca-yum-repos             noarch             1-1.el7.centos                /alpaca-yum-repos-1-1.el7.centos.noarch             130
+
+Transaction Summary
+=========================================================================================================================================
+Install  1 Package
+
+Total size: 130
+Installed size: 130
+Is this ok [y/d/N]: y
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : alpaca-yum-repos-1-1.el7.centos.noarch                                                                                1/1
+  Verifying  : alpaca-yum-repos-1-1.el7.centos.noarch                                                                                1/1
+
+Installed:
+  alpaca-yum-repos.noarch 0:1-1.el7.centos
+
+Complete!
+```
+
+As described above, I uploaded my rpm packages on Github!
+You can install my alpaca repository.
+https://github.com/alpaca0984/rpm-pkgs
