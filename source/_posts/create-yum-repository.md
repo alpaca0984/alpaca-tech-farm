@@ -10,10 +10,14 @@ tags:
 Previously, I created vim-rpm.
 {% post_link create-vim-rpm %}
 
-Next, I'm gonna create my own yum repository which install above rpm with dependencies.
+Next, I'm gonna create my own yum repository which installs above rpms with dependencies.
 
+## Prerequisites
 
-## Craete Yum repository. 
+Install a tool for creating repositories.
+`$ sudo yum install createrepo`
+
+## Init repository and add packages
 
 Create directory and init repository.
 ```
@@ -64,7 +68,7 @@ baseurl=file:///home/vagrant/yumrepos
 gpgcheck=0
 ```
 
-Try install vim from my repository.
+Try install vim from my repository(disable built-in repositories of CentOS7).
 `$ sudo yum --disablerepo=updates,base --enablerepo=alpaca-main install vim`
 
 If you couldn't find your packeages, try to clear cache.
@@ -110,12 +114,12 @@ Installed:
 Complete!
 ```
 
-### Upload your packages whereever you want
+### Upload your packages wherever you want
 
 I uploaded to Github.
 https://github.com/alpaca0984/rpm-pkgs
 
-Chage .repo file.
+And chage .repo file.
 `$ vim /etc/yum.repos.d/alpaca-main.repo`
 ```diff
 - baseurl=file:///home/vagrant/yumrepos
@@ -124,7 +128,7 @@ Chage .repo file.
 
 ## Create rpm for installing repository via yum
 
-I don't wanna write /etc/yum.repos.d/alpaca-main.repo every time.
+I don't wanna put /etc/yum.repos.d/alpaca-main.repo every time.
 So I'm gonna create rpm package which deploys above file.
 
 ### Configure .rpmmacros.
@@ -135,13 +139,13 @@ So I'm gonna create rpm package which deploys above file.
 + %_topdir %(echo $HOME)/<your-repo-name>
 ```
 
-Here, I named my package 'alpaca-main'.
+Here, I named my package 'alpaca-yum-repos'.
 
 Set up build-tree.
 `$ rpmdev-setuptree`
 Then, rpm directories are prepared.
 ```
-[vagrant@localhost ~]$ tree -d alpaca-main/
+[vagrant@localhost ~]$ tree -d alpaca-yum-repos/
 ├── BUILD
 ├── repodata
 ├── RPMS
@@ -152,9 +156,15 @@ Then, rpm directories are prepared.
 6 directories
 ```
 
+## Add .repo file to SOURCE directory
+
+Put alpaca-main.repo in SOURCE dir.
+It's used in .spec file.
+`$ cp /etc/yum.repos.d/alpaca-main.repo ~/alpaca-yum-repos/SOURCES/`
+
 ## Initialize spec file and update it
 
-`$ rpmdev-newspec SPECS/alpaca-main.spec`
+`$ rpmdev-newspec SPECS/alpaca-yum-repos.spec`
 I got a template of spec file.
 ```
 [vagrant@localhost alpaca-main]$ cat SPECS/alpaca-main.spec
@@ -197,7 +207,7 @@ rm -rf $RPM_BUILD_ROOT
 
 ### Update .spec file
 
-`$ vim SPECS/alpaca-main.spec`
+`$ vim SPECS/alpaca-yum-repos.spec`
 ```
 Name:		alpaca-yum-repos
 Version:	1
@@ -245,11 +255,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 ```
-
-### Add .repo file to SOURCE directory
-
-Put alpaca-main.repo in SOURCE dir.
-`$ cp /etc/yum.repos.d/alpaca-main.repo ~/alpaca-main/SOURCES/`
 
 ## Build rpm package
 
