@@ -168,3 +168,8 @@ You get new vim rpms from vim74/RPM directory!
 
 1 directory, 6 files
 ```
+
+## You can download my vim-rpm
+
+I'm happy to have been able to help you out ;)
+https://github.com/alpaca0984/rpm-pkgs
