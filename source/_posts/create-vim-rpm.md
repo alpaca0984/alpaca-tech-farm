@@ -19,20 +19,20 @@ This is in CentOS7.
 ## Install dependency
 
 We use gcc and so on.
-```shell
+```
 $ sudo yum groups install "Development tools"
 ```
 
 For downloading source rpm, and build rpm packages.
-```shell
+```
 $ sudo yum install yum-utils rpmdevtools
 ```
 
 ## Configure .rpmmacros
 
 When we install rpmdevtools, .rpmmacros file is created in our home directory.
-`$ cat ~/.rpmmacros`
 ```
+[vagrant@localhost ~]$ cat ~/.rpmmacros
 %_topdir %(echo $HOME)/rpmbuild
 
 %_smp_mflags %( \
@@ -65,11 +65,15 @@ Now, I'm gonna create vim-7.4 rpm so name topdir vim74.
 
 To create new vim7.4-rpm, we have to get .spec file.
 First, download source rpm.
-`$ yumdownloader --source vim`
+```
+$ yumdownloader --source vim
+```
 
 Now, we've got like a 'vim-7.4.160-1.el7_3.1.src.rpm.
 Then, install it.
-`$ rpm -ivh vim-7.4.160-1.el7_3.1.src.rpm`
+```
+$ rpm -ivh vim-7.4.160-1.el7_3.1.src.rpm
+```
 
 The ~/vim74 directory was automatically created and files are extracted.
 ```
@@ -147,12 +151,19 @@ Here is changes of vim.spec.
 
 Eventually, we build our own vim-rpm.
 If you haven't installed lua-devel, you have to do.
-`$ sudo yum install lua-devel`
+```
+$ sudo yum install lua-devel
+```
 
 Build rpm.
-`$ rpmbuild -ba SPECS/vim.spec`
+```
+$ rpmbuild -ba SPECS/vim.spec
+```
 If you specify distribution, you path it as option.
-e.g. `$ rpmbuild -ba --define '.dist <your-distribution>' SPECS/vim.spec`
+e.g.
+```
+$ rpmbuild -ba --define '.dist <your-distribution>' SPECS/vim.spec
+```
 
 You get new vim rpms from vim74/RPM directory!
 ```
