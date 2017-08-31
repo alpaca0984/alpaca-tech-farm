@@ -15,7 +15,9 @@ Next, I'm gonna create my own yum repository which installs above rpms with depe
 ## Prerequisites
 
 Install a tool for creating repositories.
-`$ sudo yum install createrepo`
+```
+$ sudo yum install createrepo
+```
 
 ## Init repository and add packages
 
@@ -42,7 +44,9 @@ repodata/
 
 Create repository.
 Here, I named one alpaca-main.
-`[vagrant@localhost yumrepos]$ mkdir -p alpaca-main/Packages`
+```
+[vagrant@localhost yumrepos]$ mkdir -p alpaca-main/Packages
+```
 
 Add packages above directory.
 In my case, I used vim packages created previous post.
@@ -69,10 +73,14 @@ gpgcheck=0
 ```
 
 Try install vim from my repository(disable built-in repositories of CentOS7).
-`$ sudo yum --disablerepo=updates,base --enablerepo=alpaca-main install vim`
+```
+$ sudo yum --disablerepo=updates,base --enablerepo=alpaca-main install vim
+```
 
 If you couldn't find your packeages, try to clear cache.
-`$ sudo yum clean --enablerepo=<your-repo> all`
+```
+$ sudo yum clean --enablerepo=<your-repo> all
+```
 
 I could install vim package from my alpaca-main repository!
 ```
@@ -142,7 +150,10 @@ So I'm gonna create rpm package which deploys above file.
 Here, I named my package 'alpaca-yum-repos'.
 
 Set up build-tree.
-`$ rpmdev-setuptree`
+```
+$ rpmdev-setuptree
+```
+
 Then, rpm directories are prepared.
 ```
 [vagrant@localhost ~]$ tree -d alpaca-yum-repos/
@@ -160,11 +171,16 @@ Then, rpm directories are prepared.
 
 Put alpaca-main.repo in SOURCE dir.
 It's used in .spec file.
-`$ cp /etc/yum.repos.d/alpaca-main.repo ~/alpaca-yum-repos/SOURCES/`
+```
+$ cp /etc/yum.repos.d/alpaca-main.repo ~/alpaca-yum-repos/SOURCES/
+```
 
 ## Initialize spec file and update it
 
-`$ rpmdev-newspec SPECS/alpaca-yum-repos.spec`
+```
+$ rpmdev-newspec SPECS/alpaca-yum-repos.spec
+```
+
 I got a template of spec file.
 ```
 [vagrant@localhost alpaca-main]$ cat SPECS/alpaca-main.spec
@@ -259,7 +275,9 @@ rm -rf $RPM_BUILD_ROOT
 ## Build rpm package
 
 Build package.
-`$ rpmbuild -ba SPECS/alpaca-yum-repos.spec`
+```
+$ rpmbuild -ba SPECS/alpaca-yum-repos.spec
+```
 
 I got the rpm package!
 ```
