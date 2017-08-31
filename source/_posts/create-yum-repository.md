@@ -15,20 +15,20 @@ Next, I'm gonna create my own yum repository which installs above rpms with depe
 ## Prerequisites
 
 Install a tool for creating repositories.
-```
+```console
 $ sudo yum install createrepo
 ```
 
 ## Init repository and add packages
 
 Create directory and init repository.
-```
+```console
 $ mkdir yumrepos && cd $_
 $ createrepo .
 ```
 
 Setted up repository data.
-```
+```console
 [vagrant@localhost yumrepos]$ tree repodata/
 repodata/
 ├── 01a3b489a465bcac22a43492163df43451dc6ce47d27f66de289756b91635523-filelists.sqlite.bz2
@@ -44,13 +44,13 @@ repodata/
 
 Create repository.
 Here, I named one alpaca-main.
-```
+```console
 [vagrant@localhost yumrepos]$ mkdir -p alpaca-main/Packages
 ```
 
 Add packages above directory.
 In my case, I used vim packages created previous post.
-```
+```console
 [vagrant@localhost yumrepos]$ ls -la alpaca-main/Packages/
 total 14880
 drwxrwxr-x. 2 vagrant vagrant    4096 Aug 30 06:31 .
@@ -73,17 +73,17 @@ gpgcheck=0
 ```
 
 Try install vim from my repository(disable built-in repositories of CentOS7).
-```
+```console
 $ sudo yum --disablerepo=updates,base --enablerepo=alpaca-main install vim
 ```
 
 If you couldn't find your packeages, try to clear cache.
-```
+```console
 $ sudo yum clean --enablerepo=<your-repo> all
 ```
 
 I could install vim package from my alpaca-main repository!
-```
+```console
 [vagrant@localhost yumrepos]$ sudo yum --disablerepo=updates,base --enablerepo=alpaca-main install vim
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
@@ -150,12 +150,12 @@ So I'm gonna create rpm package which deploys above file.
 Here, I named my package 'alpaca-yum-repos'.
 
 Set up build-tree.
-```
+```console
 $ rpmdev-setuptree
 ```
 
 Then, rpm directories are prepared.
-```
+```console
 [vagrant@localhost ~]$ tree -d alpaca-yum-repos/
 ├── BUILD
 ├── repodata
@@ -171,13 +171,13 @@ Then, rpm directories are prepared.
 
 Put alpaca-main.repo in SOURCE dir.
 It's used in .spec file.
-```
+```console
 $ cp /etc/yum.repos.d/alpaca-main.repo ~/alpaca-yum-repos/SOURCES/
 ```
 
 ## Initialize spec file and update it
 
-```
+```console
 $ rpmdev-newspec SPECS/alpaca-yum-repos.spec
 ```
 
@@ -275,12 +275,12 @@ rm -rf $RPM_BUILD_ROOT
 ## Build rpm package
 
 Build package.
-```
+```console
 $ rpmbuild -ba SPECS/alpaca-yum-repos.spec
 ```
 
 I got the rpm package!
-```
+```console
 [vagrant@localhost alpaca-main]$ tree RPMS
 RPMS
 └── noarch
@@ -292,7 +292,7 @@ RPMS
 ## Install repository via yum
 
 Finally, I got to install my alpaca-main repository.
-```
+```console
 [vagrant@localhost alpaca-main]$ sudo yum install RPMS/noarch/alpaca-yum-repos-1-1.el7.centos.noarch.rpm
 Loaded plugins: fastestmirror
 Examining RPMS/noarch/alpaca-yum-repos-1-1.el7.centos.noarch.rpm: alpaca-yum-repos-1-1.el7.centos.noarch
