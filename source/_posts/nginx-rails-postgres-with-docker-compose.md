@@ -10,7 +10,13 @@ tags:
 
 I developed a web application environment with docker.
 It includes three containers, Nginx, Rails(puma) and Postgres.
-I show you the recipes.
+
+In addition, I created and ran a small application in it.
+It smash text into words so I named it "text-smasher".
+
+<img src="{% asset_path text-smasher-demo.gif %}" style="border: 1px solid LightSlateGray" />
+
+In this page, I show you the recipes of my docker containers.
 
 ## Create Rails Docker file
 
@@ -18,7 +24,7 @@ At first, I'm gonna create rails container and access it directly.
 
 Make project directory.
 ```console
-$ mkdir rails-app && cd $_
+$ mkdir text-smasher && cd $_
 ```
 Make directories where I'm gonna put Docker file in.
 ```console
@@ -124,8 +130,8 @@ All containers work well.
 $ docker-compose ps
      Name                   Command               State           Ports
 --------------------------------------------------------------------------------
-railsapp_app_1   bundle exec puma -C config ...   Up      0.0.0.0:3000->3000/tcp
-railsapp_db_1    docker-entrypoint.sh postgres    Up      5432/tcp
+textsmasher_app_1   bundle exec puma -C config ...   Up      0.0.0.0:3000->3000/tcp
+textsmasher_db_1    docker-entrypoint.sh postgres    Up      5432/tcp
 ```
 
 I could see Rails's welcome page through localhost:3000 !
@@ -252,9 +258,12 @@ All containers work well.
 $ docker-compose ps
      Name                   Command               State          Ports
 ------------------------------------------------------------------------------
-railsapp_app_1   bundle exec puma -C config ...   Up      3000/tcp
-railsapp_db_1    docker-entrypoint.sh postgres    Up      5432/tcp
-railsapp_web_1   nginx -g daemon off;             Up      0.0.0.0:8080->80/tcp
+textsmasher_app_1   bundle exec puma -C config ...   Up      3000/tcp
+textsmasher_db_1    docker-entrypoint.sh postgres    Up      5432/tcp
+textsmasher_web_1   nginx -g daemon off;             Up      0.0.0.0:8080->80/tcp
 ```
 
 When I access to localhost:8080, I can see rails's welcome page again!
+
+I will write another post about the content of "text-smasher".
+It is coming soon;)
