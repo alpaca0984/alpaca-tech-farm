@@ -9,7 +9,7 @@ tags:
 Previously, I created docker environment with Nginx, Rails and Postgres.
 {% post_link nginx-rails-postgres-with-docker-compose %}
 
-In it, I ran a rails application with [Azure's Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/). 
+In it, I ran a rails application with [Azure's Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/).
 With it, I made app which detect key phrases from text.
 
 <img src="{% asset_path text-smasher-demo.gif %}" style="border: 1px solid LightSlateGray" />
