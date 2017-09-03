@@ -63,7 +63,7 @@ drwxrwxr-x. 3 vagrant vagrant      22 Aug 30 06:30 ..
 -rw-rw-r--. 1 vagrant vagrant 1226428 Aug 30 06:31 vim-X11-7.4.160-1.el7_3.alpaca.1.x86_64.rpm
 ```
 
-Write .repo to access rpms via yum command. 
+Write .repo to access rpms via yum command.
 `$ vim /etc/yum.repos.d/alpaca-main.repo`
 ```
 [alpaca-main]
