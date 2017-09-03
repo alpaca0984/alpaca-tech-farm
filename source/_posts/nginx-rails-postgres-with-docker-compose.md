@@ -266,4 +266,6 @@ textsmasher_web_1   nginx -g daemon off;             Up      0.0.0.0:8080->80/tc
 When I access to localhost:8080, I can see rails's welcome page again!
 
 I will write another post about the content of "text-smasher".
-It is coming soon;)
+~~It is coming soon;)~~
+I wrote it!
+{% post_link  Call-Azure-s-Text-Analytics-API-from-JavaScript Call Azure's Text Analytics API from JavaScript %}
