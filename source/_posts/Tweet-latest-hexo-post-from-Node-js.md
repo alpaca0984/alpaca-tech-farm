@@ -82,7 +82,7 @@ module.exports = {
 ### 4. Write scripts posts to twitter.
 
 At first, this parses site.xml and extract the latest post's url.
-Then it posts it to tweeter!
+Then it posts it to twitter!
 `$ vim bin/auto_tweet.js`
 ```js
 const fs = require('fs'),
