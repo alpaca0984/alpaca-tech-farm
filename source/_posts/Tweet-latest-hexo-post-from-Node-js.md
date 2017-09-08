@@ -3,6 +3,7 @@ title: Tweet latest hexo post from Node.js
 date: 2017-09-08 15:32:53
 tags:
   - Node.js
+  - Twitter API
 ---
 
 I sometimes write blog posts and I want to announce it in twitter.
