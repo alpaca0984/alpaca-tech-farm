@@ -16,7 +16,7 @@ So, I made Node.js scripts.
 
 ## Create Node.js scripts which announce latest post in twitter
 
-1. Create twitter application and get access tokens.
+### 1. Create twitter application and get access tokens.
 
 Before create app, you have to register your phone number to your twitter account.
 Signin twitter and access here.
@@ -28,7 +28,7 @@ https://apps.twitter.com/app/new
 After create, click 'Keys and Access Tokens' tab.
 You can get api keys and access tokens from it!
 
-2. Install helpful npm plugins
+### 2. Install helpful npm plugins
 
 Start writing Node.js codes ;)
 
@@ -42,7 +42,7 @@ Install packages.
 $ npm install dotenv cheerio twitter --save
 ```
 
-3. Define twitter api keys in .env file
+### 3. Define twitter api keys in .env file
 
 I wondered how manage my secret information in Node.js.
 Finally I decided that I write them in .env and read it from other files.
@@ -78,7 +78,7 @@ module.exports = {
 }
 ```
 
-4. Write scripts posts to twitter.
+### 4. Write scripts posts to twitter.
 
 At first, this parses site.xml and extract the latest post's url.
 Then it posts it to tweeter!
@@ -111,7 +111,7 @@ fs.readFile('.deploy_git/sitemap.xml', 'utf8', (err, xml) => {
 });
 ```
 
-4. Execute the scripts
+### 5. Execute the scripts
 
 ```console
 $ node bin/auto_tweet.js
