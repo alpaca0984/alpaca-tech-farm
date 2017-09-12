@@ -57,7 +57,7 @@ TWITTER_API_ACCESS_TOKEN_SECRET=xxxxxxx
 ```
 
 This is secret information so I make git to ignore it.
-`$ vim .gitconfig`
+`$ vim .gitignore`
 ```diff
 +.env
 ```
