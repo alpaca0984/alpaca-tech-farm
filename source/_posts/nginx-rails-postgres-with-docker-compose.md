@@ -2,10 +2,10 @@
 title: 'Nginx, Rails and Postgres with docker-compose'
 date: 2017-08-31 23:32:34
 tags:
-    - Nginx
-    - Rails
-    - Postgres
-    - Docker
+  - Nginx
+  - Rails
+  - Postgres
+  - Docker
 ---
 
 I developed a web application environment with docker.
