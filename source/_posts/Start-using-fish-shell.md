@@ -6,7 +6,7 @@ tags:
   - fisherman
 ---
 
-There are plenty of command line shell.
+There are plenty of command line shell.  
 I had used to use zsh but recently replaced it to fish.
 
 ## What is fish-shell
@@ -40,7 +40,7 @@ As a note, you have to be root.
 
 ## Install fisherman
 
-fisherman is a plugin manager for fish-shell.
+fisherman is a plugin manager for fish-shell.  
 It lets us to install and remove fish-shell plugins easily.
 
 To install itself, we use `curl` command.
@@ -57,7 +57,8 @@ $ fisher install fzf
 
 ### z
 
-z remember history of changing directories. It enables you to jump to the directory from everywhere.
+z remember history of changing directories.  
+It enables you to jump to the directory from everywhere.
 
 <img src="{% asset_path fish-shell_z_demo.gif %}" style="border: 1px solid LightSlateGray" />
 
@@ -70,7 +71,7 @@ $ fisher z
 
 ### fzf
 
-fif is a command-line fuzzy finder.
+fif is a command-line fuzzy finder.  
 For instance, we can search command from history interactively.
 
 <img src="{% asset_path fish-shell_fzf_demo.gif %}" style="border: 1px solid LightSlateGray" width="580px" />
@@ -103,5 +104,5 @@ Install bobthefish with `omf/` namespace.
 $ omf/thema-bobthefish
 ```
 
-You can watch demo in official repository.
+You can watch demo in official repository.  
 https://github.com/oh-my-fish/theme-bobthefish#bobthefish
