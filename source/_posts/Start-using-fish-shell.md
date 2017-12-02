@@ -73,7 +73,7 @@ $ fisher z
 fif is a command-line fuzzy finder.
 For instance, we can search command from history interactively.
 
-<img src="{% asset_path fish-shell_fzf_demo.gif %}" style="border: 1px solid LightSlateGray" />
+<img src="{% asset_path fish-shell_fzf_demo.gif %}" style="border: 1px solid LightSlateGray" width="580px" />
 
 To install for fish, it is prerequisite to install fzf in your system.
 
