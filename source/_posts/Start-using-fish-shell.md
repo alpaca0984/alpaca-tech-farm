@@ -27,7 +27,7 @@ For macOS, it can be installed with Homebrew.
 $ brew install fish
 ```
 
-For other linux distributions, many packages are available.
+For other linux distributions, many packages are available.  
 https://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish
 
 I also use CentOS 6, I added a yum repository and installed fish from it.
