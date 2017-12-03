@@ -101,7 +101,7 @@ $ fisher fzf
 fisher can manage plugins for oh-my-fish.
 Install bobthefish with `omf/` namespace.
 ```
-$ omf/thema-bobthefish
+$ fisher omf/theme-bobthefish
 ```
 
 You can watch demo in official repository.  
